@@ -1,0 +1,134 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="description" content="LUNOVA — Tienda de cosméticos. Maquillaje, skincare y perfumes de calidad." />
+  <meta name="theme-color" content="#f4b8c8" />
+
+  <!-- Open Graph para WhatsApp / redes -->
+  <meta property="og:title" content="LUNOVA — Cosméticos" />
+  <meta property="og:description" content="Descubre nuestra colección de maquillaje, skincare y perfumes." />
+  <meta property="og:type" content="website" />
+
+  <title>LUNOVA — Catálogo de Cosméticos</title>
+
+  <!-- Preconectar fuentes Google -->
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+
+  <link rel="stylesheet" href="css/estilos.css" />
+</head>
+<body>
+
+  <!-- ══ HEADER ══════════════════════════════════════════════ -->
+  <header>
+    <div class="header-inner">
+
+      <!-- Logo -->
+      <a class="logo" href="#" aria-label="LUNOVA inicio">
+        <span class="logo-text">LUNOVA</span>
+        <span class="logo-sub">Cosméticos</span>
+      </a>
+
+      <!-- Buscador -->
+      <div class="search-wrap">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+             width="15" height="15" aria-hidden="true">
+          <circle cx="11" cy="11" r="7"/><line x1="16.5" y1="16.5" x2="22" y2="22"/>
+        </svg>
+        <input
+          type="search"
+          id="buscador"
+          placeholder="Buscar productos…"
+          autocomplete="off"
+          inputmode="search"
+          aria-label="Buscar productos"
+        />
+      </div>
+
+      <!-- Botón carrito -->
+      <button id="btn-carrito" aria-label="Abrir carrito">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+             width="20" height="20" aria-hidden="true">
+          <path d="M6 2L3 6v14a2 2 0 002 2h14a2 2 0 002-2V6l-3-4z"/>
+          <line x1="3" y1="6" x2="21" y2="6"/>
+          <path d="M16 10a4 4 0 01-8 0"/>
+        </svg>
+        <span id="carrito-badge" aria-live="polite">0</span>
+      </button>
+
+    </div>
+  </header>
+
+  <!-- ══ CATEGORÍAS ══════════════════════════════════════════ -->
+  <nav class="categorias-scroll" aria-label="Filtrar por categoría">
+    <div id="categorias-wrap"></div>
+  </nav>
+
+  <!-- ══ CONTENIDO PRINCIPAL ═════════════════════════════════ -->
+  <main class="main-content">
+    <div id="productos-grid" role="list" aria-label="Catálogo de productos">
+      <!-- Productos renderizados por JS -->
+    </div>
+
+    <!-- Sin resultados -->
+    <div id="sin-resultados" role="status" aria-live="polite">
+      <span aria-hidden="true">🌸</span>
+      <p>No encontramos productos con ese criterio.</p>
+    </div>
+  </main>
+
+  <!-- ══ MODAL CARRITO ════════════════════════════════════════ -->
+  <div id="modal-carrito" role="dialog" aria-modal="true" aria-label="Carrito de compras">
+    <div class="modal-sheet">
+
+      <div class="modal-header">
+        <h2>🛒 Mi carrito</h2>
+        <button id="btn-cerrar-modal" aria-label="Cerrar carrito">✕</button>
+      </div>
+
+      <div id="carrito-cuerpo">
+        <!-- Items dinámicos -->
+      </div>
+
+      <div class="modal-footer">
+        <div class="total-row">
+          <span>Total del pedido</span>
+          <span id="carrito-total">S/ 0.00</span>
+        </div>
+        <button id="btn-enviar-carrito" aria-label="Enviar pedido por WhatsApp">
+          <!-- WhatsApp icon -->
+          <svg viewBox="0 0 24 24" fill="currentColor" width="20" height="20" aria-hidden="true">
+            <path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347z"/>
+            <path d="M12 0C5.373 0 0 5.373 0 12c0 2.125.558 4.122 1.533 5.855L.057 23.882a.5.5 0 00.611.611l6.124-1.478A11.95 11.95 0 0012 24c6.627 0 12-5.373 12-12S18.627 0 12 0zm0 21.818a9.8 9.8 0 01-5.002-1.37l-.359-.213-3.722.898.912-3.627-.234-.374A9.818 9.818 0 012.182 12C2.182 6.57 6.57 2.182 12 2.182S21.818 6.57 21.818 12 17.43 21.818 12 21.818z"/>
+          </svg>
+          Enviar pedido por WhatsApp
+        </button>
+      </div>
+
+    </div>
+  </div>
+
+  <!-- ══ TOAST ════════════════════════════════════════════════ -->
+  <div id="toast" role="status" aria-live="polite"></div>
+
+  <!-- ══ FOOTER ═══════════════════════════════════════════════ -->
+  <footer>
+    <p>© 2025 <strong>LUNOVA</strong> — Hecho con 🌸 para ti</p>
+  </footer>
+
+  <!-- Imagen placeholder SVG inline (fallback sin conexión) -->
+  <svg style="display:none">
+    <symbol id="placeholder-img" viewBox="0 0 200 200">
+      <rect width="200" height="200" fill="#fae0e8"/>
+      <text x="50%" y="50%" dominant-baseline="middle" text-anchor="middle"
+            font-size="36" fill="#e8899f">🌸</text>
+    </symbol>
+  </svg>
+
+  <!-- Scripts -->
+  <script src="js/productos.js"></script>
+  <script src="js/app.js"></script>
+</body>
+</html>
