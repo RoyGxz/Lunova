@@ -10,27 +10,29 @@
   <title>LUNOVA — Catálogo de Cosméticos</title>
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@400;500;600&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet"/>
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;1,400&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet"/>
 <style>
 :root {
-  --rosa: #f4b8c8;
-  --rosa-deep: #e8899f;
-  --rosa-light: #fdf0f4;
-  --rosa-mid: #fae0e8;
-  --blanco: #fff;
-  --crema: #fdf8f5;
-  --gris: #f2eef0;
-  --gris-mid: #c9b8c0;
-  --gris-text: #6e5a63;
-  --negro: #2a1a22;
-  --dorado: #c9a96e;
-  --shadow-card: 0 2px 16px rgba(200,100,140,.10);
-  --shadow-soft: 0 4px 24px rgba(228,140,170,.13);
-  --radius: 18px;
-  --radius-sm: 10px;
-  --transition: .22s cubic-bezier(.4,0,.2,1);
-  --font-display: 'Cormorant Garamond', serif;
-  --font-body: 'DM Sans', sans-serif;
+  --rosa:        #f4b8c8;
+  --rosa-deep:   #e8899f;
+  --rosa-light:  #fdf0f4;
+  --rosa-mid:    #fae0e8;
+  --blanco:      #fff;
+  --crema:       #fdf8f5;
+  --gris:        #f2eef0;
+  --gris-mid:    #c9b8c0;
+  --gris-text:   #6e5a63;
+  --negro:       #2a1a22;
+  --dorado:      #c9a96e;
+  --dorado-light:#f5ecd7;
+  --shadow-card: 0 2px 20px rgba(200,100,140,.09);
+  --shadow-soft: 0 8px 32px rgba(228,140,170,.18);
+  --shadow-up:   0 -4px 24px rgba(200,100,140,.10);
+  --radius:      20px;
+  --radius-sm:   12px;
+  --transition:  .22s cubic-bezier(.4,0,.2,1);
+  --font-display:'Cormorant Garamond', serif;
+  --font-body:   'DM Sans', sans-serif;
 }
 *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
 html { scroll-behavior: smooth; -webkit-tap-highlight-color: transparent; }
@@ -38,113 +40,359 @@ body { font-family: var(--font-body); background: var(--crema); color: var(--neg
 img { display: block; max-width: 100%; }
 button { cursor: pointer; border: none; background: none; font-family: inherit; }
 
-/* ── Header ── */
-header { position: sticky; top: 0; z-index: 100; background: rgba(253,240,244,.92); backdrop-filter: blur(14px); -webkit-backdrop-filter: blur(14px); border-bottom: 1px solid var(--rosa-mid); padding: 0 16px; }
-.header-inner { display: flex; align-items: center; justify-content: space-between; max-width: 900px; margin: 0 auto; height: 62px; gap: 12px; }
-.logo { display: flex; flex-direction: column; line-height: 1; flex-shrink: 0; text-decoration: none; }
-.logo-text { font-family: var(--font-display); font-size: 1.75rem; font-weight: 600; color: var(--negro); letter-spacing: .12em; }
-.logo-sub { font-size: .58rem; letter-spacing: .28em; color: var(--dorado); text-transform: uppercase; margin-top: 1px; }
+/* ══ HEADER ══════════════════════════════════════════════════ */
+header {
+  position: sticky; top: 0; z-index: 100;
+  background: rgba(253,248,245,.94);
+  backdrop-filter: blur(16px); -webkit-backdrop-filter: blur(16px);
+  border-bottom: 1px solid var(--rosa-mid);
+  padding: 0 16px;
+}
+.header-inner {
+  display: flex; align-items: center; justify-content: space-between;
+  max-width: 900px; margin: 0 auto; height: 64px; gap: 12px;
+}
+.logo { display: flex; flex-direction: column; line-height: 1; flex-shrink: 0; text-decoration: none; gap: 2px; }
+.logo-text {
+  font-family: var(--font-display); font-size: 1.85rem; font-weight: 600;
+  color: var(--negro); letter-spacing: .14em;
+}
+.logo-sub {
+  font-size: .56rem; letter-spacing: .32em; color: var(--dorado);
+  text-transform: uppercase;
+}
+
+/* Buscador */
 .search-wrap { flex: 1; position: relative; max-width: 340px; }
-.search-wrap svg { position: absolute; left: 12px; top: 50%; transform: translateY(-50%); color: var(--gris-mid); pointer-events: none; }
-#buscador { width: 100%; padding: 9px 14px 9px 36px; border: 1.5px solid var(--rosa-mid); border-radius: 50px; font-family: var(--font-body); font-size: .85rem; background: var(--blanco); color: var(--negro); outline: none; transition: border-color var(--transition), box-shadow var(--transition); }
+.search-wrap svg { position: absolute; left: 13px; top: 50%; transform: translateY(-50%); color: var(--gris-mid); pointer-events: none; }
+#buscador {
+  width: 100%; padding: 10px 14px 10px 38px;
+  border: 1.5px solid var(--rosa-mid); border-radius: 50px;
+  font-family: var(--font-body); font-size: .85rem;
+  background: var(--blanco); color: var(--negro); outline: none;
+  transition: border-color var(--transition), box-shadow var(--transition);
+}
 #buscador::placeholder { color: var(--gris-mid); }
-#buscador:focus { border-color: var(--rosa-deep); box-shadow: 0 0 0 3px rgba(232,137,159,.18); }
-#btn-carrito { position: relative; width: 42px; height: 42px; border-radius: 50%; background: var(--rosa); color: var(--negro); display: flex; align-items: center; justify-content: center; flex-shrink: 0; transition: background var(--transition), transform var(--transition); }
-#btn-carrito:hover { background: var(--rosa-deep); transform: scale(1.07); }
-#carrito-badge { display: none; position: absolute; top: -4px; right: -4px; min-width: 18px; height: 18px; padding: 0 4px; border-radius: 50px; background: var(--dorado); color: var(--blanco); font-size: .62rem; font-weight: 500; align-items: center; justify-content: center; line-height: 1; }
+#buscador:focus { border-color: var(--rosa-deep); box-shadow: 0 0 0 3px rgba(232,137,159,.15); }
 
-/* ── Categorías ── */
-.categorias-scroll { background: var(--blanco); border-bottom: 1px solid var(--rosa-mid); overflow-x: auto; -ms-overflow-style: none; scrollbar-width: none; }
+/* Botón carrito */
+#btn-carrito {
+  position: relative; width: 44px; height: 44px; border-radius: 50%;
+  background: linear-gradient(135deg, var(--rosa) 0%, var(--rosa-deep) 100%);
+  color: var(--blanco); display: flex; align-items: center; justify-content: center;
+  flex-shrink: 0; transition: transform var(--transition), box-shadow var(--transition);
+  box-shadow: 0 2px 12px rgba(232,137,159,.35);
+}
+#btn-carrito:hover { transform: scale(1.08); box-shadow: 0 4px 18px rgba(232,137,159,.45); }
+#carrito-badge {
+  display: none; position: absolute; top: -5px; right: -5px;
+  min-width: 19px; height: 19px; padding: 0 5px;
+  border-radius: 50px; background: var(--dorado); color: var(--blanco);
+  font-size: .6rem; font-weight: 500; align-items: center; justify-content: center;
+  border: 2px solid var(--crema);
+}
+
+/* ══ HERO STRIP ══════════════════════════════════════════════ */
+.hero-strip {
+  background: linear-gradient(135deg, #fdf0f4 0%, #fdf8f5 50%, #fef9f0 100%);
+  border-bottom: 1px solid var(--rosa-mid);
+  padding: 18px 20px;
+  text-align: center;
+}
+.hero-strip p {
+  font-family: var(--font-display); font-size: 1rem; font-style: italic;
+  color: var(--gris-text); letter-spacing: .04em;
+}
+.hero-strip strong { color: var(--rosa-deep); font-style: normal; font-weight: 600; }
+
+/* ══ CATEGORÍAS ══════════════════════════════════════════════ */
+.categorias-scroll {
+  background: var(--blanco); border-bottom: 1px solid var(--rosa-mid);
+  overflow-x: auto; -ms-overflow-style: none; scrollbar-width: none;
+}
 .categorias-scroll::-webkit-scrollbar { display: none; }
-#categorias-wrap { display: flex; gap: 8px; padding: 10px 16px; max-width: 900px; margin: 0 auto; white-space: nowrap; }
-.cat-btn { padding: 7px 16px; border-radius: 50px; font-size: .78rem; font-weight: 500; border: 1.5px solid var(--rosa-mid); background: var(--blanco); color: var(--gris-text); letter-spacing: .02em; transition: all var(--transition); flex-shrink: 0; }
-.cat-btn:hover { border-color: var(--rosa-deep); color: var(--rosa-deep); }
-.cat-btn.activa { background: var(--rosa-deep); border-color: var(--rosa-deep); color: var(--blanco); }
+#categorias-wrap {
+  display: flex; gap: 8px; padding: 12px 16px;
+  max-width: 900px; margin: 0 auto; white-space: nowrap;
+}
+.cat-btn {
+  padding: 8px 18px; border-radius: 50px; font-size: .78rem; font-weight: 500;
+  border: 1.5px solid var(--rosa-mid); background: var(--blanco); color: var(--gris-text);
+  letter-spacing: .02em; transition: all var(--transition); flex-shrink: 0;
+}
+.cat-btn:hover { border-color: var(--rosa-deep); color: var(--rosa-deep); background: var(--rosa-light); }
+.cat-btn.activa { background: var(--rosa-deep); border-color: var(--rosa-deep); color: var(--blanco); box-shadow: 0 2px 10px rgba(232,137,159,.3); }
 
-/* ── Grid ── */
-.main-content { max-width: 900px; margin: 0 auto; padding: 20px 12px 80px; }
+/* ══ GRID ════════════════════════════════════════════════════ */
+.main-content { max-width: 900px; margin: 0 auto; padding: 22px 12px 90px; }
+.seccion-titulo {
+  font-family: var(--font-display); font-size: 1.4rem; font-weight: 500;
+  color: var(--negro); margin-bottom: 16px; letter-spacing: .04em;
+}
+.seccion-titulo span { color: var(--rosa-deep); }
+
 #productos-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 14px; }
-@media (min-width: 600px) { #productos-grid { grid-template-columns: repeat(3, 1fr); } }
+@media (min-width: 580px) { #productos-grid { grid-template-columns: repeat(3, 1fr); } }
 @media (min-width: 860px) { #productos-grid { grid-template-columns: repeat(4, 1fr); gap: 18px; } }
 
-/* ── Tarjeta ── */
-.card { background: var(--blanco); border-radius: var(--radius); box-shadow: var(--shadow-card); overflow: hidden; display: flex; flex-direction: column; opacity: 0; transform: translateY(16px); animation: fadeUp .5s forwards; transition: box-shadow var(--transition), transform var(--transition); }
-.card:hover { box-shadow: var(--shadow-soft); transform: translateY(-3px); }
+/* ══ TARJETA ═════════════════════════════════════════════════ */
+.card {
+  background: var(--blanco); border-radius: var(--radius); box-shadow: var(--shadow-card);
+  overflow: hidden; display: flex; flex-direction: column;
+  opacity: 0; transform: translateY(18px); animation: fadeUp .5s forwards;
+  transition: box-shadow var(--transition), transform var(--transition);
+  border: 1px solid rgba(244,184,200,.2);
+}
+.card:hover { box-shadow: var(--shadow-soft); transform: translateY(-4px); }
 @keyframes fadeUp { to { opacity: 1; transform: translateY(0); } }
-.card-img-wrap { position: relative; aspect-ratio: 1/1; overflow: hidden; background: var(--gris); }
-.card-img-wrap img { width: 100%; height: 100%; object-fit: cover; transition: transform .4s ease; }
-.card:hover .card-img-wrap img { transform: scale(1.06); }
-.card-badge { position: absolute; top: 8px; left: 8px; padding: 3px 9px; border-radius: 50px; background: rgba(253,240,244,.9); font-size: .62rem; font-weight: 500; color: var(--rosa-deep); letter-spacing: .04em; backdrop-filter: blur(4px); }
-.card-body { padding: 12px 12px 14px; display: flex; flex-direction: column; flex: 1; gap: 5px; }
-.card-nombre { font-family: var(--font-display); font-size: 1rem; font-weight: 600; line-height: 1.2; color: var(--negro); }
-.card-desc { font-size: .73rem; color: var(--gris-text); line-height: 1.45; display: -webkit-box; -webkit-line-clamp: 2; -webkit-box-orient: vertical; overflow: hidden; flex: 1; }
-.card-precio { font-family: var(--font-display); font-size: 1.15rem; font-weight: 600; color: var(--rosa-deep); margin-top: 2px; }
-.card-btns { display: flex; gap: 7px; margin-top: 8px; }
 
-/* ── Botones ── */
-.btn { display: flex; align-items: center; justify-content: center; gap: 5px; border-radius: 50px; font-size: .76rem; font-weight: 500; padding: 8px 12px; transition: all var(--transition); white-space: nowrap; }
-.btn-carrito { flex: 1; background: var(--gris); color: var(--gris-text); border: 1.5px solid transparent; }
+/* Imagen clickeable */
+.card-img-wrap {
+  position: relative; aspect-ratio: 1/1; overflow: hidden;
+  background: var(--gris); cursor: pointer;
+}
+.card-img-wrap img {
+  width: 100%; height: 100%; object-fit: cover;
+  transition: transform .5s cubic-bezier(.4,0,.2,1);
+}
+.card:hover .card-img-wrap img { transform: scale(1.08); }
+
+.card-img-overlay {
+  position: absolute; inset: 0;
+  background: rgba(42,26,34,0);
+  display: flex; align-items: center; justify-content: center;
+  transition: background var(--transition);
+}
+.card-img-wrap:hover .card-img-overlay { background: rgba(42,26,34,.22); }
+.overlay-icon {
+  opacity: 0; transform: scale(.8);
+  transition: opacity var(--transition), transform var(--transition);
+  background: rgba(255,255,255,.92); border-radius: 50%;
+  width: 40px; height: 40px; display: flex; align-items: center; justify-content: center;
+  color: var(--rosa-deep);
+}
+.card-img-wrap:hover .overlay-icon { opacity: 1; transform: scale(1); }
+
+.card-badge {
+  position: absolute; top: 10px; left: 10px; padding: 4px 10px; border-radius: 50px;
+  background: rgba(253,240,244,.92); font-size: .6rem; font-weight: 500;
+  color: var(--rosa-deep); letter-spacing: .05em; backdrop-filter: blur(6px);
+  text-transform: uppercase;
+}
+
+/* Etiqueta "Nuevo" opcional */
+.card-nuevo {
+  position: absolute; top: 10px; right: 10px; padding: 4px 9px; border-radius: 50px;
+  background: var(--dorado); color: var(--blanco); font-size: .58rem;
+  font-weight: 500; letter-spacing: .06em; text-transform: uppercase;
+}
+
+.card-body { padding: 13px 13px 15px; display: flex; flex-direction: column; flex: 1; gap: 5px; }
+.card-nombre {
+  font-family: var(--font-display); font-size: 1rem; font-weight: 600;
+  line-height: 1.25; color: var(--negro);
+}
+.card-desc {
+  font-size: .72rem; color: var(--gris-text); line-height: 1.5;
+  display: -webkit-box; -webkit-line-clamp: 2; -webkit-box-orient: vertical;
+  overflow: hidden; flex: 1;
+}
+.card-precio {
+  font-family: var(--font-display); font-size: 1.2rem; font-weight: 600;
+  color: var(--rosa-deep); margin-top: 3px;
+}
+.card-btns { display: flex; gap: 7px; margin-top: 10px; }
+
+/* ══ BOTONES ═════════════════════════════════════════════════ */
+.btn {
+  display: flex; align-items: center; justify-content: center; gap: 5px;
+  border-radius: 50px; font-size: .76rem; font-weight: 500; padding: 9px 13px;
+  transition: all var(--transition); white-space: nowrap;
+}
+.btn-carrito {
+  flex: 1; background: var(--gris); color: var(--gris-text); border: 1.5px solid transparent;
+}
 .btn-carrito:hover { background: var(--rosa-light); border-color: var(--rosa); color: var(--rosa-deep); }
-.btn-carrito:active { transform: scale(.96); }
-.btn-wa { flex: 1; background: var(--rosa-deep); color: var(--blanco); }
-.btn-wa:hover { background: #d4728a; }
-.btn-wa:active { transform: scale(.96); }
+.btn-carrito:active { transform: scale(.95); }
+.btn-wa {
+  flex: 1;
+  background: linear-gradient(135deg, #e8899f 0%, #d4728a 100%);
+  color: var(--blanco); box-shadow: 0 2px 10px rgba(232,137,159,.25);
+}
+.btn-wa:hover { box-shadow: 0 4px 16px rgba(232,137,159,.4); transform: translateY(-1px); }
+.btn-wa:active { transform: scale(.95); }
 
-/* ── Sin resultados ── */
-#sin-resultados { display: none; flex-direction: column; align-items: center; justify-content: center; padding: 60px 20px; gap: 10px; color: var(--gris-mid); text-align: center; grid-column: 1 / -1; }
-#sin-resultados span { font-size: 2.5rem; }
+/* ══ SIN RESULTADOS ══════════════════════════════════════════ */
+#sin-resultados {
+  display: none; flex-direction: column; align-items: center; justify-content: center;
+  padding: 70px 20px; gap: 12px; color: var(--gris-mid); text-align: center; grid-column: 1/-1;
+}
+#sin-resultados span { font-size: 3rem; }
 #sin-resultados p { font-size: .9rem; }
 
-/* ── Modal ── */
-#modal-carrito { position: fixed; inset: 0; z-index: 200; background: rgba(42,26,34,.4); backdrop-filter: blur(4px); display: flex; align-items: flex-end; justify-content: center; opacity: 0; pointer-events: none; transition: opacity var(--transition); }
+/* ══ MODAL DETALLE PRODUCTO ══════════════════════════════════ */
+#modal-detalle {
+  position: fixed; inset: 0; z-index: 300;
+  background: rgba(42,26,34,.5); backdrop-filter: blur(6px);
+  display: flex; align-items: flex-end; justify-content: center;
+  opacity: 0; pointer-events: none; transition: opacity .25s ease;
+}
+#modal-detalle.abierto { opacity: 1; pointer-events: all; }
+#modal-detalle.abierto .detalle-sheet { transform: translateY(0); }
+
+.detalle-sheet {
+  width: 100%; max-width: 540px; max-height: 92dvh;
+  background: var(--blanco); border-radius: 24px 24px 0 0;
+  display: flex; flex-direction: column;
+  transform: translateY(100%);
+  transition: transform .35s cubic-bezier(.4,0,.2,1);
+  overflow: hidden;
+}
+
+/* handle */
+.detalle-handle {
+  width: 40px; height: 4px; border-radius: 2px;
+  background: var(--rosa-mid); margin: 12px auto 0;
+  flex-shrink: 0;
+}
+
+.detalle-img {
+  width: 100%; aspect-ratio: 1/1; max-height: 300px;
+  object-fit: cover; background: var(--gris); flex-shrink: 0;
+}
+
+.detalle-body {
+  padding: 20px 20px 8px; flex: 1; overflow-y: auto;
+}
+.detalle-cat {
+  font-size: .65rem; font-weight: 500; letter-spacing: .12em;
+  text-transform: uppercase; color: var(--dorado); margin-bottom: 6px;
+}
+.detalle-nombre {
+  font-family: var(--font-display); font-size: 1.6rem; font-weight: 600;
+  line-height: 1.2; color: var(--negro); margin-bottom: 8px;
+}
+.detalle-precio {
+  font-family: var(--font-display); font-size: 1.8rem; font-weight: 600;
+  color: var(--rosa-deep); margin-bottom: 14px;
+}
+.detalle-desc {
+  font-size: .85rem; color: var(--gris-text); line-height: 1.65;
+  border-top: 1px solid var(--rosa-mid); padding-top: 14px;
+}
+
+.detalle-footer {
+  padding: 16px 20px 28px; display: flex; gap: 10px;
+  border-top: 1px solid var(--rosa-mid); flex-shrink: 0;
+  background: var(--blanco);
+}
+.detalle-footer .btn { flex: 1; padding: 14px; font-size: .85rem; }
+.btn-cerrar-detalle {
+  width: 44px; height: 44px; border-radius: 50%; background: var(--gris);
+  color: var(--gris-text); display: flex; align-items: center; justify-content: center;
+  font-size: 1rem; flex-shrink: 0; align-self: center;
+  transition: background var(--transition);
+}
+.btn-cerrar-detalle:hover { background: var(--rosa-mid); }
+
+/* ══ MODAL CARRITO ═══════════════════════════════════════════ */
+#modal-carrito {
+  position: fixed; inset: 0; z-index: 200;
+  background: rgba(42,26,34,.4); backdrop-filter: blur(5px);
+  display: flex; align-items: flex-end; justify-content: center;
+  opacity: 0; pointer-events: none; transition: opacity var(--transition);
+}
 #modal-carrito.abierto { opacity: 1; pointer-events: all; }
 #modal-carrito.abierto .modal-sheet { transform: translateY(0); }
-.modal-sheet { width: 100%; max-width: 540px; max-height: 88dvh; background: var(--blanco); border-radius: var(--radius) var(--radius) 0 0; display: flex; flex-direction: column; transform: translateY(100%); transition: transform .32s cubic-bezier(.4,0,.2,1); overflow: hidden; }
-.modal-header { display: flex; align-items: center; justify-content: space-between; padding: 18px 20px 14px; border-bottom: 1px solid var(--rosa-mid); flex-shrink: 0; }
-.modal-header h2 { font-family: var(--font-display); font-size: 1.3rem; font-weight: 600; }
-#btn-cerrar-modal { width: 32px; height: 32px; border-radius: 50%; background: var(--gris); color: var(--gris-text); font-size: 1rem; display: flex; align-items: center; justify-content: center; transition: background var(--transition); }
+
+.modal-sheet {
+  width: 100%; max-width: 540px; max-height: 88dvh;
+  background: var(--blanco); border-radius: 24px 24px 0 0;
+  display: flex; flex-direction: column;
+  transform: translateY(100%); transition: transform .32s cubic-bezier(.4,0,.2,1);
+  overflow: hidden;
+}
+.modal-header {
+  display: flex; align-items: center; justify-content: space-between;
+  padding: 20px 20px 16px; border-bottom: 1px solid var(--rosa-mid); flex-shrink: 0;
+}
+.modal-header h2 { font-family: var(--font-display); font-size: 1.35rem; font-weight: 600; }
+#btn-cerrar-modal {
+  width: 34px; height: 34px; border-radius: 50%; background: var(--gris);
+  color: var(--gris-text); font-size: 1rem; display: flex; align-items: center;
+  justify-content: center; transition: background var(--transition);
+}
 #btn-cerrar-modal:hover { background: var(--rosa-mid); }
 #carrito-cuerpo { overflow-y: auto; flex: 1; padding: 14px 16px; display: flex; flex-direction: column; gap: 12px; }
-.carrito-vacio { display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 10px; padding: 50px 20px; color: var(--gris-mid); }
-.carrito-vacio span { font-size: 2.8rem; }
+
+.carrito-vacio { display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 12px; padding: 50px 20px; color: var(--gris-mid); }
+.carrito-vacio span { font-size: 3rem; }
 .carrito-vacio p { font-size: .9rem; }
-.carrito-item { display: flex; gap: 12px; align-items: flex-start; padding: 10px; border-radius: var(--radius-sm); background: var(--rosa-light); }
-.carrito-item img { width: 58px; height: 58px; border-radius: 8px; object-fit: cover; background: var(--gris); flex-shrink: 0; }
+
+.carrito-item { display: flex; gap: 12px; align-items: flex-start; padding: 12px; border-radius: var(--radius-sm); background: var(--rosa-light); }
+.carrito-item img { width: 60px; height: 60px; border-radius: 10px; object-fit: cover; background: var(--gris); flex-shrink: 0; }
 .ci-info { flex: 1; min-width: 0; }
-.ci-nombre { font-size: .82rem; font-weight: 500; color: var(--negro); white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+.ci-nombre { font-size: .83rem; font-weight: 500; color: var(--negro); white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
 .ci-precio { font-size: .72rem; color: var(--gris-text); margin-top: 2px; }
 .ci-cantidad { display: flex; align-items: center; gap: 10px; margin-top: 8px; }
-.ci-cantidad button { width: 26px; height: 26px; border-radius: 50%; background: var(--rosa-mid); color: var(--negro); font-size: 1rem; display: flex; align-items: center; justify-content: center; transition: background var(--transition); }
+.ci-cantidad button { width: 28px; height: 28px; border-radius: 50%; background: var(--rosa-mid); color: var(--negro); font-size: 1rem; display: flex; align-items: center; justify-content: center; transition: background var(--transition); }
 .ci-cantidad button:hover { background: var(--rosa); }
-.ci-cantidad span { font-size: .85rem; font-weight: 500; min-width: 18px; text-align: center; }
+.ci-cantidad span { font-size: .85rem; font-weight: 500; min-width: 20px; text-align: center; }
 .ci-derecha { display: flex; flex-direction: column; align-items: flex-end; justify-content: space-between; gap: 8px; flex-shrink: 0; }
-.ci-subtotal { font-family: var(--font-display); font-size: .95rem; font-weight: 600; color: var(--rosa-deep); }
-.ci-eliminar { width: 24px; height: 24px; border-radius: 50%; background: transparent; color: var(--gris-mid); font-size: .75rem; display: flex; align-items: center; justify-content: center; transition: color var(--transition), background var(--transition); }
+.ci-subtotal { font-family: var(--font-display); font-size: 1rem; font-weight: 600; color: var(--rosa-deep); }
+.ci-eliminar { width: 26px; height: 26px; border-radius: 50%; color: var(--gris-mid); font-size: .75rem; display: flex; align-items: center; justify-content: center; transition: color var(--transition), background var(--transition); }
 .ci-eliminar:hover { background: #ffd5e0; color: #c0304e; }
-.modal-footer { border-top: 1px solid var(--rosa-mid); padding: 14px 20px 20px; flex-shrink: 0; }
+
+.modal-footer { border-top: 1px solid var(--rosa-mid); padding: 16px 20px 22px; flex-shrink: 0; }
 .total-row { display: flex; align-items: center; justify-content: space-between; margin-bottom: 14px; }
 .total-row span:first-child { font-size: .85rem; color: var(--gris-text); }
-#carrito-total { font-family: var(--font-display); font-size: 1.4rem; font-weight: 600; color: var(--negro); }
-#btn-enviar-carrito { display: none; width: 100%; align-items: center; justify-content: center; gap: 8px; padding: 15px; border-radius: 50px; background: #25d366; color: var(--blanco); font-size: .95rem; font-weight: 500; letter-spacing: .02em; transition: background var(--transition), transform var(--transition); }
-#btn-enviar-carrito:hover { background: #1ebe5d; }
+#carrito-total { font-family: var(--font-display); font-size: 1.5rem; font-weight: 600; color: var(--negro); }
+
+#btn-enviar-carrito {
+  display: none; width: 100%; align-items: center; justify-content: center; gap: 9px;
+  padding: 16px; border-radius: 50px; background: #25d366; color: var(--blanco);
+  font-size: .95rem; font-weight: 500; letter-spacing: .02em;
+  transition: background var(--transition), transform var(--transition);
+  box-shadow: 0 3px 14px rgba(37,211,102,.3);
+}
+#btn-enviar-carrito:hover { background: #1ebe5d; transform: translateY(-1px); }
 #btn-enviar-carrito:active { transform: scale(.97); }
 
-/* ── Toast ── */
-#toast { position: fixed; bottom: 24px; left: 50%; transform: translateX(-50%) translateY(80px); background: var(--negro); color: var(--blanco); font-size: .8rem; padding: 10px 20px; border-radius: 50px; opacity: 0; transition: transform .28s ease, opacity .28s ease; pointer-events: none; white-space: nowrap; z-index: 300; box-shadow: 0 4px 20px rgba(0,0,0,.22); }
+/* ══ TOAST ═══════════════════════════════════════════════════ */
+#toast {
+  position: fixed; bottom: 28px; left: 50%;
+  transform: translateX(-50%) translateY(80px);
+  background: var(--negro); color: var(--blanco); font-size: .8rem;
+  padding: 11px 22px; border-radius: 50px; opacity: 0;
+  transition: transform .28s ease, opacity .28s ease;
+  pointer-events: none; white-space: nowrap; z-index: 400;
+  box-shadow: 0 6px 24px rgba(0,0,0,.25);
+  display: flex; align-items: center; gap: 8px;
+}
 #toast.visible { transform: translateX(-50%) translateY(0); opacity: 1; }
 
-/* ── Footer ── */
-footer { text-align: center; padding: 28px 16px; font-size: .72rem; color: var(--gris-mid); letter-spacing: .05em; border-top: 1px solid var(--rosa-mid); }
+/* ══ FOOTER ══════════════════════════════════════════════════ */
+footer {
+  text-align: center; padding: 30px 16px;
+  font-size: .72rem; color: var(--gris-mid);
+  letter-spacing: .06em; border-top: 1px solid var(--rosa-mid);
+  background: var(--blanco);
+}
 footer strong { color: var(--rosa-deep); font-weight: 500; }
+.footer-divider {
+  width: 40px; height: 1px; background: var(--rosa-mid);
+  margin: 0 auto 12px;
+}
 </style>
 </head>
 <body>
 
+<!-- ══ HEADER ═════════════════════════════════════════════════ -->
 <header>
   <div class="header-inner">
     <a class="logo" href="#" aria-label="LUNOVA inicio">
       <span class="logo-text">LUNOVA</span>
-      <span class="logo-sub">Cosméticos</span>
+      <span class="logo-sub">Cosméticos &amp; Belleza</span>
     </a>
     <div class="search-wrap">
       <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" width="15" height="15" aria-hidden="true"><circle cx="11" cy="11" r="7"/><line x1="16.5" y1="16.5" x2="22" y2="22"/></svg>
@@ -157,11 +405,19 @@ footer strong { color: var(--rosa-deep); font-weight: 500; }
   </div>
 </header>
 
+<!-- ══ HERO STRIP ════════════════════════════════════════════ -->
+<div class="hero-strip">
+  <p>✨ Envíos a todo el Perú &nbsp;·&nbsp; Pide por <strong>WhatsApp</strong> &nbsp;·&nbsp; Productos 100% originales</p>
+</div>
+
+<!-- ══ CATEGORÍAS ════════════════════════════════════════════ -->
 <nav class="categorias-scroll" aria-label="Filtrar por categoría">
   <div id="categorias-wrap"></div>
 </nav>
 
+<!-- ══ CONTENIDO ════════════════════════════════════════════ -->
 <main class="main-content">
+  <p class="seccion-titulo">Nuestros <span>productos</span></p>
   <div id="productos-grid" role="list" aria-label="Catálogo de productos"></div>
   <div id="sin-resultados" role="status" aria-live="polite">
     <span aria-hidden="true">🌸</span>
@@ -169,6 +425,29 @@ footer strong { color: var(--rosa-deep); font-weight: 500; }
   </div>
 </main>
 
+<!-- ══ MODAL DETALLE ════════════════════════════════════════ -->
+<div id="modal-detalle" role="dialog" aria-modal="true" aria-label="Detalle del producto">
+  <div class="detalle-sheet">
+    <div class="detalle-handle"></div>
+    <img id="detalle-img" class="detalle-img" src="" alt="" loading="lazy"/>
+    <div class="detalle-body">
+      <p id="detalle-cat" class="detalle-cat"></p>
+      <h2 id="detalle-nombre" class="detalle-nombre"></h2>
+      <p id="detalle-precio" class="detalle-precio"></p>
+      <p id="detalle-desc" class="detalle-desc"></p>
+    </div>
+    <div class="detalle-footer">
+      <button class="btn-cerrar-detalle" id="btn-cerrar-detalle" aria-label="Cerrar">✕</button>
+      <button class="btn btn-carrito" id="detalle-btn-carrito">🛒 Agregar al carrito</button>
+      <button class="btn btn-wa" id="detalle-btn-wa">
+        <svg viewBox="0 0 24 24" fill="currentColor" width="15" height="15"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347z"/><path d="M12 0C5.373 0 0 5.373 0 12c0 2.125.558 4.122 1.533 5.855L.057 23.882a.5.5 0 00.611.611l6.124-1.478A11.95 11.95 0 0012 24c6.627 0 12-5.373 12-12S18.627 0 12 0zm0 21.818a9.8 9.8 0 01-5.002-1.37l-.359-.213-3.722.898.912-3.627-.234-.374A9.818 9.818 0 012.182 12C2.182 6.57 6.57 2.182 12 2.182S21.818 6.57 21.818 12 17.43 21.818 12 21.818z"/></svg>
+        Pedir
+      </button>
+    </div>
+  </div>
+</div>
+
+<!-- ══ MODAL CARRITO ════════════════════════════════════════ -->
 <div id="modal-carrito" role="dialog" aria-modal="true" aria-label="Carrito de compras">
   <div class="modal-sheet">
     <div class="modal-header">
@@ -182,16 +461,19 @@ footer strong { color: var(--rosa-deep); font-weight: 500; }
         <span id="carrito-total">S/ 0.00</span>
       </div>
       <button id="btn-enviar-carrito" aria-label="Enviar pedido por WhatsApp">
-        <svg viewBox="0 0 24 24" fill="currentColor" width="20" height="20" aria-hidden="true"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347z"/><path d="M12 0C5.373 0 0 5.373 0 12c0 2.125.558 4.122 1.533 5.855L.057 23.882a.5.5 0 00.611.611l6.124-1.478A11.95 11.95 0 0012 24c6.627 0 12-5.373 12-12S18.627 0 12 0zm0 21.818a9.8 9.8 0 01-5.002-1.37l-.359-.213-3.722.898.912-3.627-.234-.374A9.818 9.818 0 012.182 12C2.182 6.57 6.57 2.182 12 2.182S21.818 6.57 21.818 12 17.43 21.818 12 21.818z"/></svg>
+        <svg viewBox="0 0 24 24" fill="currentColor" width="20" height="20"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347z"/><path d="M12 0C5.373 0 0 5.373 0 12c0 2.125.558 4.122 1.533 5.855L.057 23.882a.5.5 0 00.611.611l6.124-1.478A11.95 11.95 0 0012 24c6.627 0 12-5.373 12-12S18.627 0 12 0zm0 21.818a9.8 9.8 0 01-5.002-1.37l-.359-.213-3.722.898.912-3.627-.234-.374A9.818 9.818 0 012.182 12C2.182 6.57 6.57 2.182 12 2.182S21.818 6.57 21.818 12 17.43 21.818 12 21.818z"/></svg>
         Enviar pedido por WhatsApp
       </button>
     </div>
   </div>
 </div>
 
+<!-- ══ TOAST ════════════════════════════════════════════════ -->
 <div id="toast" role="status" aria-live="polite"></div>
 
+<!-- ══ FOOTER ═══════════════════════════════════════════════ -->
 <footer>
+  <div class="footer-divider"></div>
   <p>© 2025 <strong>LUNOVA</strong> — Hecho con 🌸 para ti</p>
 </footer>
 
@@ -205,39 +487,47 @@ const WHATSAPP_NUMBER = "51930758621";
 //  PRODUCTOS — Edita aquí tu catálogo
 // ============================================================
 const productos = [
-  { id:1,  nombre:"Labial Mate Rojo Pasión",      precio:25, categoria:"Labiales",  imagen:"img/1001013761.jpg", descripcion:"Labial de larga duración con acabado mate intenso. Fórmula hidratante que no reseca." },
-  { id:2,  nombre:"Labial Nude Rosado",            precio:22, categoria:"Labiales",  imagen:"", descripcion:"Tono nude natural con acabado semimate. Perfecto para el día a día." },
-  { id:3,  nombre:"Base Líquida Cobertura Total",  precio:45, categoria:"Bases",     imagen:"", descripcion:"Cobertura completa de larga duración. Fórmula ligera con control del brillo." },
-  { id:4,  nombre:"BB Cream Natural SPF 30",       precio:38, categoria:"Bases",     imagen:"", descripcion:"Hidratación, cobertura y protección solar en un solo producto." },
-  { id:5,  nombre:"Paleta de Sombras Rose Gold",   precio:55, categoria:"Ojos",      imagen:"", descripcion:"12 tonos combinables en acabados mate, shimmer y glitter. Muy pigmentadas." },
-  { id:6,  nombre:"Máscara de Pestañas Volumen",   precio:30, categoria:"Ojos",      imagen:"", descripcion:"Efecto volumen y curvatura extrema. Fórmula resistente al agua." },
-  { id:7,  nombre:"Delineador Líquido Negro",      precio:18, categoria:"Ojos",      imagen:"", descripcion:"Punta ultrafina para trazos precisos. Secado rápido y larga duración." },
-  { id:8,  nombre:"Rubor Blush Melocotón",         precio:28, categoria:"Rostro",    imagen:"", descripcion:"Tono melocotón cálido que da luminosidad natural al rostro." },
-  { id:9,  nombre:"Iluminador Dorado",             precio:32, categoria:"Rostro",    imagen:"", descripcion:"Iluminador en polvo con partículas doradas para un acabado radiante." },
-  { id:10, nombre:"Contorno Facial Duo",           precio:40, categoria:"Rostro",    imagen:"", descripcion:"Kit de contorno y rubor en uno. Define y da dimensión al rostro." },
-  { id:11, nombre:"Perfume Floral Luna Rosa",      precio:65, categoria:"Perfumes",  imagen:"", descripcion:"Fragancia floral con notas de rosa, jazmín y vainilla. 50ml." },
-  { id:12, nombre:"Perfume Noche Estrellada",      precio:75, categoria:"Perfumes",  imagen:"", descripcion:"Fragancia oriental amaderada con notas de sándalo y ámbar. 50ml." },
-  { id:13, nombre:"Sérum Vitamina C Luminoso",     precio:58, categoria:"Skincare",  imagen:"", descripcion:"Sérum antioxidante con vitamina C al 15%. Unifica el tono y aporta luminosidad." },
-  { id:14, nombre:"Crema Hidratante Rosa Mosqueta",precio:42, categoria:"Skincare",  imagen:"", descripcion:"Crema nutritiva con aceite de rosa mosqueta. Regeneradora y antiedad." },
-  { id:15, nombre:"Desmaquillante Agua Micelar",   precio:20, categoria:"Skincare",  imagen:"", descripcion:"Limpieza profunda sin resecar. Retira maquillaje resistente al agua. 200ml." }
+  { id:1,  nombre:"Labial Mate Rojo Pasión",       precio:25, categoria:"Labiales",  imagen:"img/1001013761.jpg", descripcion:"Labial de larga duración con acabado mate intenso. Fórmula hidratante que no reseca los labios." },
+  { id:2,  nombre:"Labial Nude Rosado",             precio:22, categoria:"Labiales",  imagen:"", descripcion:"Tono nude natural con acabado semimate. Perfecto para el día a día." },
+  { id:3,  nombre:"Base Líquida Cobertura Total",   precio:45, categoria:"Bases",     imagen:"", descripcion:"Cobertura completa de larga duración. Fórmula ligera con control del brillo." },
+  { id:4,  nombre:"BB Cream Natural SPF 30",        precio:38, categoria:"Bases",     imagen:"", descripcion:"Hidratación, cobertura y protección solar en un solo producto." },
+  { id:5,  nombre:"Paleta de Sombras Rose Gold",    precio:55, categoria:"Ojos",      imagen:"", descripcion:"12 tonos combinables en acabados mate, shimmer y glitter. Muy pigmentadas." },
+  { id:6,  nombre:"Máscara de Pestañas Volumen",    precio:30, categoria:"Ojos",      imagen:"", descripcion:"Efecto volumen y curvatura extrema. Fórmula resistente al agua." },
+  { id:7,  nombre:"Delineador Líquido Negro",       precio:18, categoria:"Ojos",      imagen:"", descripcion:"Punta ultrafina para trazos precisos. Secado rápido y larga duración." },
+  { id:8,  nombre:"Rubor Blush Melocotón",          precio:28, categoria:"Rostro",    imagen:"", descripcion:"Tono melocotón cálido que da luminosidad natural al rostro." },
+  { id:9,  nombre:"Iluminador Dorado",              precio:32, categoria:"Rostro",    imagen:"", descripcion:"Iluminador en polvo con partículas doradas para un acabado radiante." },
+  { id:10, nombre:"Contorno Facial Duo",            precio:40, categoria:"Rostro",    imagen:"", descripcion:"Kit de contorno y rubor en uno. Define y da dimensión al rostro." },
+  { id:11, nombre:"Perfume Floral Luna Rosa",       precio:65, categoria:"Perfumes",  imagen:"", descripcion:"Fragancia floral con notas de rosa, jazmín y vainilla. 50ml." },
+  { id:12, nombre:"Perfume Noche Estrellada",       precio:75, categoria:"Perfumes",  imagen:"", descripcion:"Fragancia oriental amaderada con notas de sándalo y ámbar. 50ml." },
+  { id:13, nombre:"Sérum Vitamina C Luminoso",      precio:58, categoria:"Skincare",  imagen:"", descripcion:"Sérum antioxidante con vitamina C al 15%. Unifica el tono y aporta luminosidad." },
+  { id:14, nombre:"Crema Hidratante Rosa Mosqueta", precio:42, categoria:"Skincare",  imagen:"", descripcion:"Crema nutritiva con aceite de rosa mosqueta. Regeneradora y antiedad." },
+  { id:15, nombre:"Desmaquillante Agua Micelar",    precio:20, categoria:"Skincare",  imagen:"", descripcion:"Limpieza profunda sin resecar. Retira maquillaje resistente al agua. 200ml." }
 ];
 
-// ── Placeholder SVG inline ──────────────────────────────────
-const PLACEHOLDER = `data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 400 400'%3E%3Crect width='400' height='400' fill='%23fae0e8'/%3E%3Ctext x='200' y='220' font-size='80' text-anchor='middle'%3E🌸%3C/text%3E%3C/svg%3E`;
+// ── Placeholder ────────────────────────────────────────────
+const PH = `data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 400 400'%3E%3Crect width='400' height='400' fill='%23fae0e8'/%3E%3Ctext x='200' y='220' font-size='90' text-anchor='middle'%3E🌸%3C/text%3E%3C/svg%3E`;
 
 // ── Estado ──────────────────────────────────────────────────
 let carrito = [];
+let productoDetalleActual = null;
 
-// ── Render productos ────────────────────────────────────────
+// ══ RENDER PRODUCTOS ════════════════════════════════════════
 function renderProductos(lista) {
   const grid = document.getElementById("productos-grid");
   const sr   = document.getElementById("sin-resultados");
-  if (lista.length === 0) { grid.innerHTML = ""; sr.style.display = "flex"; return; }
+  if (!lista.length) { grid.innerHTML = ""; sr.style.display = "flex"; return; }
   sr.style.display = "none";
   grid.innerHTML = lista.map((p, i) => `
-    <article class="card" style="animation-delay:${i * 0.06}s">
-      <div class="card-img-wrap">
-        <img src="${p.imagen || PLACEHOLDER}" alt="${p.nombre}" loading="lazy" onerror="this.src='${PLACEHOLDER}'"/>
+    <article class="card" style="animation-delay:${i * 0.055}s" role="listitem">
+      <div class="card-img-wrap" onclick="abrirDetalle(${p.id})" tabindex="0"
+           role="button" aria-label="Ver detalle de ${p.nombre}"
+           onkeydown="if(event.key==='Enter')abrirDetalle(${p.id})">
+        <img src="${p.imagen || PH}" alt="${p.nombre}" loading="lazy" onerror="this.src='${PH}'"/>
+        <div class="card-img-overlay">
+          <div class="overlay-icon">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" width="18" height="18"><circle cx="11" cy="11" r="7"/><line x1="16.5" y1="16.5" x2="22" y2="22"/></svg>
+          </div>
+        </div>
         <span class="card-badge">${p.categoria}</span>
       </div>
       <div class="card-body">
@@ -255,15 +545,16 @@ function renderProductos(lista) {
     </article>`).join("");
 }
 
-// ── Categorías ──────────────────────────────────────────────
+// ══ CATEGORÍAS ══════════════════════════════════════════════
 function renderCategorias() {
   const cats = ["Todos", ...new Set(productos.map(p => p.categoria))];
   const wrap = document.getElementById("categorias-wrap");
-  wrap.innerHTML = cats.map(c => `<button class="cat-btn${c==="Todos"?" activa":""}" data-cat="${c}">${c}</button>`).join("");
+  wrap.innerHTML = cats.map(c =>
+    `<button class="cat-btn${c==="Todos"?" activa":""}" data-cat="${c}">${c}</button>`
+  ).join("");
   wrap.querySelectorAll(".cat-btn").forEach(btn => btn.addEventListener("click", () => {
     wrap.querySelectorAll(".cat-btn").forEach(b => b.classList.remove("activa"));
-    btn.classList.add("activa");
-    filtrar();
+    btn.classList.add("activa"); filtrar();
   }));
 }
 
@@ -277,7 +568,27 @@ function filtrar() {
   }));
 }
 
-// ── Carrito ─────────────────────────────────────────────────
+// ══ MODAL DETALLE ════════════════════════════════════════════
+function abrirDetalle(id) {
+  const p = productos.find(x => x.id === id); if (!p) return;
+  productoDetalleActual = p;
+  document.getElementById("detalle-img").src    = p.imagen || PH;
+  document.getElementById("detalle-img").alt    = p.nombre;
+  document.getElementById("detalle-cat").textContent    = p.categoria;
+  document.getElementById("detalle-nombre").textContent = p.nombre;
+  document.getElementById("detalle-precio").textContent = `S/ ${p.precio.toFixed(2)}`;
+  document.getElementById("detalle-desc").textContent   = p.descripcion;
+  document.getElementById("modal-detalle").classList.add("abierto");
+  document.body.style.overflow = "hidden";
+}
+
+function cerrarDetalle() {
+  document.getElementById("modal-detalle").classList.remove("abierto");
+  document.body.style.overflow = "";
+  productoDetalleActual = null;
+}
+
+// ══ CARRITO ══════════════════════════════════════════════════
 function agregarAlCarrito(id) {
   const p = productos.find(x => x.id === id); if (!p) return;
   const e = carrito.find(x => x.id === id);
@@ -297,10 +608,10 @@ function actualizarCarrito() {
   b.textContent = total; b.style.display = total > 0 ? "flex" : "none";
 }
 function renderCarritoModal() {
-  const cuerpo = document.getElementById("carrito-cuerpo");
-  const totalEl = document.getElementById("carrito-total");
-  const btnEnviar = document.getElementById("btn-enviar-carrito");
-  if (carrito.length === 0) {
+  const cuerpo   = document.getElementById("carrito-cuerpo");
+  const totalEl  = document.getElementById("carrito-total");
+  const btnEnviar= document.getElementById("btn-enviar-carrito");
+  if (!carrito.length) {
     cuerpo.innerHTML = `<div class="carrito-vacio"><span>🛍️</span><p>Tu carrito está vacío</p></div>`;
     totalEl.textContent = "S/ 0.00"; btnEnviar.style.display = "none"; return;
   }
@@ -309,7 +620,7 @@ function renderCarritoModal() {
   totalEl.textContent = `S/ ${sub.toFixed(2)}`;
   cuerpo.innerHTML = carrito.map(item => `
     <div class="carrito-item">
-      <img src="${item.imagen || PLACEHOLDER}" alt="${item.nombre}" onerror="this.src='${PLACEHOLDER}'"/>
+      <img src="${item.imagen || PH}" alt="${item.nombre}" onerror="this.src='${PH}'"/>
       <div class="ci-info">
         <p class="ci-nombre">${item.nombre}</p>
         <p class="ci-precio">S/ ${item.precio.toFixed(2)} c/u</p>
@@ -325,10 +636,10 @@ function renderCarritoModal() {
       </div>
     </div>`).join("");
 }
-function abrirCarrito() { renderCarritoModal(); document.getElementById("modal-carrito").classList.add("abierto"); document.body.style.overflow="hidden"; }
+function abrirCarrito()  { renderCarritoModal(); document.getElementById("modal-carrito").classList.add("abierto"); document.body.style.overflow="hidden"; }
 function cerrarCarrito() { document.getElementById("modal-carrito").classList.remove("abierto"); document.body.style.overflow=""; }
 
-// ── WhatsApp ────────────────────────────────────────────────
+// ══ WHATSAPP ═════════════════════════════════════════════════
 function pedirWhatsapp(id) {
   const p = productos.find(x => x.id === id); if (!p) return;
   const msg = encodeURIComponent(`Hola, quiero pedir:\n\nProducto: ${p.nombre}\nPrecio: S/ ${p.precio.toFixed(2)}\nTienda: LUNOVA 🌸`);
@@ -342,22 +653,40 @@ function enviarCarritoWhatsapp() {
   window.open(`https://wa.me/${WHATSAPP_NUMBER}?text=${msg}`, "_blank");
 }
 
-// ── Toast ────────────────────────────────────────────────────
+// ══ TOAST ════════════════════════════════════════════════════
 function mostrarToast(msg) {
   const t = document.getElementById("toast");
   t.textContent = msg; t.classList.add("visible");
-  clearTimeout(t._t); t._t = setTimeout(() => t.classList.remove("visible"), 2200);
+  clearTimeout(t._t); t._t = setTimeout(() => t.classList.remove("visible"), 2300);
 }
 
-// ── Init ─────────────────────────────────────────────────────
+// ══ INIT ═════════════════════════════════════════════════════
 document.addEventListener("DOMContentLoaded", () => {
   renderCategorias();
   renderProductos(productos);
+
   document.getElementById("buscador").addEventListener("input", filtrar);
+
+  // Carrito
   document.getElementById("btn-carrito").addEventListener("click", abrirCarrito);
   document.getElementById("btn-cerrar-modal").addEventListener("click", cerrarCarrito);
   document.getElementById("btn-enviar-carrito").addEventListener("click", enviarCarritoWhatsapp);
   document.getElementById("modal-carrito").addEventListener("click", e => { if (e.target===e.currentTarget) cerrarCarrito(); });
+
+  // Detalle
+  document.getElementById("btn-cerrar-detalle").addEventListener("click", cerrarDetalle);
+  document.getElementById("modal-detalle").addEventListener("click", e => { if (e.target===e.currentTarget) cerrarDetalle(); });
+  document.getElementById("detalle-btn-carrito").addEventListener("click", () => {
+    if (productoDetalleActual) { agregarAlCarrito(productoDetalleActual.id); cerrarDetalle(); }
+  });
+  document.getElementById("detalle-btn-wa").addEventListener("click", () => {
+    if (productoDetalleActual) pedirWhatsapp(productoDetalleActual.id);
+  });
+
+  // Cerrar con tecla Escape
+  document.addEventListener("keydown", e => {
+    if (e.key === "Escape") { cerrarDetalle(); cerrarCarrito(); }
+  });
 });
 </script>
 </body>
